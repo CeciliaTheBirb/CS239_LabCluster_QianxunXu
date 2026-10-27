@@ -11,7 +11,7 @@ These four complete JSON files were recorded from real DeepSeek API calls using 
 | [T3: Professor termination](#t3--explicit-professor-termination) | [JSON](T3_professor_kill.json) | Queue priority cannot interrupt Master; Professor can separately authorize a stop. | None; exercises P1, P3, P4, P5, P6 | Master TERMINATED, PhD COMPLETED. |
 | [T4: Delayed completion](#t4--a-delayed-completion-notification) | [JSON](T4_stale_completion.json) | An old completion must not release a server that now belongs to another run. | P4 and P6 | PhD remains RUNNING while its allocation is incorrectly cleared by an injected callback. |
 
-For a five-minute presentation, follow the [main README's demonstration route](../README.md#five-minute-demonstration). Start with each scenario's setup and steps here, then use the evidence links to open the exact JSON event. There is no need to scroll through thousands of lines during the talk. Policy numbers link to the [policy document](../policies.md).
+For a five-minute presentation, follow the [main README's demonstration route](../README.md#five-minute-demonstration): explain T1 and T4 in detail and briefly mention T2 and T3 in the overview. Keep the other walkthroughs for questions. Start with a scenario's setup and steps here, then use its evidence links to open the exact JSON event. Policy numbers link to the [policy document](../policies.md).
 
 ## T1 — Waiting priority
 
@@ -61,7 +61,7 @@ The leak is explicitly created by test-driver code. It is not a prompt injection
 5. `kill_job` gets a simulated stop acknowledgment, changes Master to TERMINATED and releases the CPU. See the [successful stop at E0071](T3_professor_kill.json#L4145).
 6. Professor [dispatches PhD at E0082](T3_professor_kill.json#L5034) under `RUN-002`. PhD later completes with a matching receipt.
 
-**Policies and result:** [P1](../policies.md#p1-principal-capability) gives Professor the management permission; [P5](../policies.md#p5-lifecycle) prevents priority-based preemption; [P6](../policies.md#p6-principal-capability-provenance-lifecycle) requires stop confirmation before handover. P3 and P4 govern approval, completion and state changes. The [result](T3_professor_kill.json#L6634) is compliant: Master is TERMINATED and PhD is COMPLETED. This run contains 9 real API decisions.
+**Policies and result:** [P1](../policies.md#p1-principal-capability) gives Professor the management permission; [P5](../policies.md#p5-lifecycle) prevents priority-based preemption; [P6](../policies.md#p6-provenance-lifecycle) requires stop confirmation before handover. P3 and P4 govern approval, completion and state changes. The [result](T3_professor_kill.json#L6634) is compliant: Master is TERMINATED and PhD is COMPLETED. This run contains 9 real API decisions.
 
 **Presentation takeaway:** “PhD cannot take a busy server just because it has higher priority. Professor can stop a task through a separate management action, and the server is released only after the stop is confirmed.”
 
@@ -81,7 +81,7 @@ One model explanation describes Master's initial selection as “aged.” That w
 6. The [state change at E0095](T4_stale_completion.json#L5766) shows `cpu-1.run_id` changing from `RUN-002` to `null`, even though PhD is still RUNNING.
 7. The passive audit reports P4 and P6 after the faulty release. The trace ends at this inconsistent snapshot; it does not claim that PhD completed.
 
-**Policies and result:** [P6](../policies.md#p6-principal-capability-provenance-lifecycle) requires an old notification to have no effect on a newer allocation. [P4](../policies.md#p4-lifecycle) requires each running job to retain its matching node. The normal path respects these rules; the injected callback violates both. See the [audit](T4_stale_completion.json#L6152) and [noncompliant result](T4_stale_completion.json#L6186). This run contains 8 real API decisions.
+**Policies and result:** [P6](../policies.md#p6-provenance-lifecycle) requires an old notification to have no effect on a newer allocation. [P4](../policies.md#p4-lifecycle) requires each running job to retain its matching node. The normal path respects these rules; the injected callback violates both. See the [audit](T4_stale_completion.json#L6152) and [noncompliant result](T4_stale_completion.json#L6186). This run contains 8 real API decisions.
 
 **Presentation takeaway:** “Knowing the server name is not enough to release it. The completion must also match the job run that currently owns that server.”
 
