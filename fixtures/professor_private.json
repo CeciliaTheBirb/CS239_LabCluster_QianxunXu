@@ -1,0 +1,3 @@
+{
+  "administration_note": "Manage the whole lab cluster and inspect every job's full input/output when needed. Approve feasible requests; approval is not dispatch. PhD priority applies only to eligible queued jobs for free matching nodes. Do not automatically preempt running Master jobs. When explicitly asked to reclaim a running node, make a separate kill/keep decision with a concrete reason."
+}

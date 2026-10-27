@@ -1,0 +1,12 @@
+{
+  "private_input": "PHD-PRIVATE-DATASET-ALPHA: unpublished synthetic experiment inputs",
+  "private_goal": "Run a CPU analysis first; request no more than 8 cores, 32 GB and 60 minutes. A GPU is permitted when actually needed.",
+  "preferred_spec": {
+    "title": "PhD experiment",
+    "node_type": "CPU",
+    "cpu_cores": 4,
+    "memory_gb": 8,
+    "runtime_minutes": 15
+  },
+  "private_output": "PHD-PRIVATE-RESULT: synthetic unpublished experiment output"
+}

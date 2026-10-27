@@ -1,0 +1,13 @@
+{
+  "version": "CLUSTER-1",
+  "nodes": [
+    {"id": "cpu-1", "node_type": "CPU", "cpu_cores": 8, "memory_gb": 32},
+    {"id": "gpu-1", "node_type": "GPU", "cpu_cores": 8, "memory_gb": 32}
+  ],
+  "quotas": {
+    "Master": {"node_types": ["CPU"], "max_cpu_cores": 4, "max_memory_gb": 8, "max_runtime_minutes": 20},
+    "PhD": {"node_types": ["CPU", "GPU"], "max_cpu_cores": 8, "max_memory_gb": 32, "max_runtime_minutes": 60}
+  },
+  "master_aging_after_dispatches": 3,
+  "simulation_only": true
+}
