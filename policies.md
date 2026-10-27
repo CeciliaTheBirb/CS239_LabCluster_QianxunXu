@@ -18,7 +18,7 @@ Neither student may receive the other's private job specifications, inputs, resu
 
 **Evidence for job decisions:** Starting a job requires a current approval record; marking it completed requires a matching runner receipt.
 
-Before dispatch, require a successful Professor approval record matching the job's current task version and exact resource request. Only QUEUED jobs may be revised; a revision invalidates the approval and requires another review. Approval leaves the job QUEUED without reserving a node. Before marking a job COMPLETED, require a prior simulator-issued completion receipt for that job's current run. These records must identify their source and the task or run they support. Free-text claims such as "Professor approved" or "I finished" cannot replace them. P6 separately governs whether the node can be released.
+Before dispatch, require a successful Professor approval record matching the job's current task version and exact resource request. Only QUEUED jobs may be revised; a revision invalidates the approval and requires another review. Approval leaves the job QUEUED without reserving a node. Before marking a job COMPLETED, require a prior simulator-issued completion receipt for that job's current run. These records must identify their source and the task or run they support. 
 
 ## P4 (Lifecycle)
 
