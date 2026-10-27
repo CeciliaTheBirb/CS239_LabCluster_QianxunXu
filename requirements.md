@@ -1,8 +1,8 @@
-# LabCluster — Draft Requirements
+# LabCluster
 
-## What the application does
+## Overview
 
-LabCluster is a working multi-agent prototype for coordinating a simulated laboratory server cluster. Professor, PhD and Master each make decisions using a separate role prompt and model context, exchange messages, and use local tools to manage resource requests and jobs.
+LabCluster is a multi-agent framework for coordinating a simulated laboratory server cluster. Professor, PhD and Master each make decisions using a separate role prompt and model context, exchange messages, and use local tools to manage resource requests and jobs.
 
 | Agent | Resource capability | Permissions and information access |
 |---|---|---|
