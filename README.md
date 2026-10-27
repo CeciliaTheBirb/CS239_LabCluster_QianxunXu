@@ -6,11 +6,13 @@ Author: Qianxun (Cecilia) Xu. License: MIT.
 
 ## Five-minute demonstration
 
-Use this repository as the presentation guide. Explain T1 and T4 in detail; T2 and T3 provide the information-isolation and management examples.
+Use this repository as the presentation guide. Explain T1 and T4 in detail; briefly mention T2 and T3 in the overview and keep their full walkthroughs for questions. The five-minute talk does not need a separate demonstration of every trace.
+
+[P3](policies.md#p3-provenance-lifecycle) explains the evidence needed to start or complete a job. [P6](policies.md#p6-provenance-lifecycle) explains when its server can safely be released.
 
 | Approximate time | Open | Explain or show |
 |---|---|---|
-| 0:00–0:45 | [Agent roles and requirements](requirements.md#what-the-application-does) | Professor manages the cluster and sees both students' work. PhD may use CPU or GPU and normally goes first in the waiting queue. Master may use CPU only. |
+| 0:00–0:45 | [Agent roles and requirements](requirements.md#overview) | Professor manages the cluster and sees both students' work. PhD may use CPU or GPU and normally goes first in the waiting queue. Master may use CPU only. |
 | 0:45–1:15 | [Policies](policies.md) and the lifecycle below | Highlight role permissions, student information isolation, and exclusive node ownership. Approval leaves a job QUEUED; it does not reserve a server. |
 | 1:15–2:00 | Local terminal: the T1 command in [Setup and examples](#setup-and-examples) | Run the application. Use the DeepSeek backend for new model decisions; the deterministic backend is an explicitly offline example. |
 | 2:00–3:00 | [T1 walkthrough](traces/README.md#t1--waiting-priority) | Master submits first, but both jobs are waiting when scheduling begins. Show why PhD runs first, then open one decision, its tool result, and the final outcome. |
