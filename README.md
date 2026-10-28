@@ -2,23 +2,6 @@
 
 LabCluster is a three-agent prototype for a simulated laboratory server cluster. Professor manages requests and may stop either student's job. PhD can request CPU or GPU and has higher default waiting priority; Master can request CPU only. Students cannot inspect each other's private work, while Professor may inspect both.
 
-Author: Qianxun (Cecilia) Xu. License: MIT.
-
-## Five-minute demonstration
-
-Use this repository as the presentation guide. Explain T1 and T4 in detail; briefly mention T2 and T3 in the overview and keep their full walkthroughs for questions. The five-minute talk does not need a separate demonstration of every trace.
-
-[P3](policies.md#p3-provenance-lifecycle) explains the evidence needed to start or complete a job. [P6](policies.md#p6-provenance-lifecycle) explains when its server can safely be released.
-
-| Approximate time | Open | Explain or show |
-|---|---|---|
-| 0:00–0:45 | [Agent roles and requirements](requirements.md#overview) | Professor manages the cluster and sees both students' work. PhD may use CPU or GPU and normally goes first in the waiting queue. Master may use CPU only. |
-| 0:45–1:15 | [Policies](policies.md) and the lifecycle below | Highlight role permissions, student information isolation, and exclusive node ownership. Approval leaves a job QUEUED; it does not reserve a server. |
-| 1:15–2:00 | Local terminal: the T1 command in [Setup and examples](#setup-and-examples) | Run the application. Use the DeepSeek backend for new model decisions; the deterministic backend is an explicitly offline example. |
-| 2:00–3:00 | [T1 walkthrough](traces/README.md#t1--waiting-priority) | Master submits first, but both jobs are waiting when scheduling begins. Show why PhD runs first, then open one decision, its tool result, and the final outcome. |
-| 3:00–4:15 | [T4 walkthrough](traces/README.md#t4--a-delayed-completion-notification) | The CPU moves from Master's old run to PhD's new run. The normal interface ignores the old completion; the injected faulty callback incorrectly frees PhD's node. |
-| 4:15–5:00 | [Scenario overview](traces/README.md#scenario-overview) | T2 demonstrates an injected information leak; T3 demonstrates an authorized Professor stop. Explain that the passive audit detects injected violations after their effects. |
-
 ```mermaid
 stateDiagram-v2
     [*] --> QUEUED: Submit
@@ -27,8 +10,6 @@ stateDiagram-v2
     RUNNING --> COMPLETED: Verified completion
     RUNNING --> TERMINATED: Confirmed stop
 ```
-
-Before presenting, configure your local API key privately, run the offline tests once, and keep the [recorded trace walkthroughs](traces/README.md) open. A new run writes its own JSON and readable Markdown under `runtime/runs/`; the GitHub evidence links point to the submitted recordings, whose event IDs and line numbers may differ from a new run. A provider delay can be covered by walking through the recorded evidence while the live run finishes.
 
 ## Setup and examples
 
